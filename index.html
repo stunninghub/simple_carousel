@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Carousel</title>
+	<style type="text/css">
+		body{
+			padding: 0px;
+			margin: 0px;
+			background: transparent;
+		}
+		.carousel{
+			width: 100%;
+			height: 100vh;
+			background: #555;
+			position: relative;
+			transition: all 1s;
+		}
+		.btn_left, .btn_right{
+			position: absolute;
+			width: 200px;
+			height: 100%;
+			background: transparent;
+			justify-content: center;
+			align-items: center;
+			display: flex;
+		}
+		.btn_left{
+			top: 0px;
+			left: 0px;
+		}
+		.btn_right{
+			top: 0px;
+			right: 0px;
+		}
+		.btn_left::before{
+			content: '';
+			width: 50px;
+			height: 50px;
+			border-left: 2px solid #fff;
+			border-bottom: 2px solid #fff;
+			transform: rotate(45deg);
+		}
+		.btn_right::before{
+			content: '';
+			width: 50px;
+			height: 50px;
+			border-right: 2px solid #fff;
+			border-bottom: 2px solid #fff;
+			transform: rotate(-45deg);
+		}
+	</style>
+</head>
+<body>
+	<div class="carousel">
+		<div class="btn_left" onclick="change_img('left')"></div>
+		<div class="btn_right" onclick="change_img('right')"></div>
+	</div>
+
+	<script type="text/javascript">
+		var img_array = ['img1.jpg','img2.jpg','img3.jpg'],
+			current_img = 0;
+
+		function change_img(direction){
+			document.querySelector('.carousel').style.background = "url("+img_array[current_img]+")center no-repeat";
+			document.querySelector('.carousel').style.backgroundSize = "cover";
+			if(direction == "right"){
+				if(current_img < img_array.length-1){
+					current_img++;
+					document.querySelector('.carousel').style.background = "url("+img_array[current_img]+")center no-repeat";
+					document.querySelector('.carousel').style.backgroundSize = "cover";
+				}else{
+					current_img = 0;
+					document.querySelector('.carousel').style.background = "url("+img_array[current_img]+")center no-repeat";
+					document.querySelector('.carousel').style.backgroundSize = "cover";
+				}
+			}else if(direction == "left"){
+				if(current_img > 0){
+					current_img--;
+					document.querySelector('.carousel').style.background = "url("+img_array[current_img]+")center no-repeat";
+					document.querySelector('.carousel').style.backgroundSize = "cover";
+				}else{
+					current_img = img_array.length-1;
+					document.querySelector('.carousel').style.background = "url("+img_array[current_img]+")center no-repeat";
+					document.querySelector('.carousel').style.backgroundSize = "cover";
+				}
+			}
+		}
+		change_img();
+
+
+		setInterval(function(){
+			change_img('right');
+		},8000);
+	</script>
+</body>
+</html>
