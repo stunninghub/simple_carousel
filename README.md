@@ -1,4 +1,4 @@
-# simple_carousel
+# Simple Carousel
 
 Let's create an animated carousel by using HTML, CSS & JavaScript.
 
